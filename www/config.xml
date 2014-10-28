@@ -3,13 +3,13 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "fr.agoralogie.multicollect"
-        version   = "0.8.0">
+        id        = "fr.agoralogie.multicollectenvironnementopen"
+        version   = "0.7.0">
 
     <name>Multicollect-OCD</name>
 
     <description>
-        Multicollect Health
+        Multicollect Environnement Open
     </description>
 
     <author href="http://www.agoralogie.fr" email="philippe.laroche@agoralogie.fr">
@@ -57,7 +57,8 @@
     <gap:plugin name="de.appplant.cordova.plugin.local-notification" />
     <gap:plugin name="org.apache.cordova.file" />
     <gap:plugin name="org.apache.cordova.file-transfer" />
-
+    <gap:plugin name="org.apache.cordova.geolocation" version="0.3.10" />
+    
     <!--
         <gap:plugin name="Example" />
         A list of available plugins are available at https://build.phonegap.com/docs/plugins
