@@ -85,21 +85,7 @@
 			  //remplit table horaires
 			  //saveSession(firstTime);
 			  saveQuestionnaire(firstTime);
-			};
-			
-			var repondre_questionaire = function() {
-			   isHomeActive = false;
-			  //TODO switch ismobile pour test locaux seulement sinon fonctionnement normal
-			  if(!isMobile)
-			  	openFakeStudy(xmlquotidien, onLssLoaded);
-			  else
-				{
-			  	$('body.home #opensurvey #buttonopensurvey').click();
-				  }
-			 getTemplate('.contenu',0);
-			};
-			
-			
+			};		
  </script>
 </head>
 
@@ -124,10 +110,6 @@
             <div class="titre_journal">Journal de bord</div>
             <div id='home'>
               <div class="question">Vous n'avez pas de questionnaire à remplir</div>
-             
-              <div class="questionnaire suite home"> <div class="fille"></div>
-                <input type="button" value="Je remplis&#13;&#10;le questionnaire" onClick="repondre_questionaire()">
-              </div>
            </div>
             <div id='acquisition' style='display: none;'> 
             	<span id='question1' font-size: 30pt></span> <span id='answer1' font-size: 25pt></span> <br>Suite

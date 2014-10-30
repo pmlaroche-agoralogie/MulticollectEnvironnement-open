@@ -340,6 +340,11 @@ function saveQuestionnaire(firstTime) {
 			alert('saveQuest2');
 		var sid = surveys[0].sid;
 		var qtitre = surveys_languagesettings[0].surveyls_title;
+		if (debug)
+			{
+			alert(sid);alert(qtitre);
+			alert('saveQuest22');
+			}
 		tx.executeSql('select count("id") as cnt from "questionnaires" WHERE uidquestionnaire = '+sid+';', [], function(tx, res) {
 			if (debug)
 				alert('saveQuest3');
