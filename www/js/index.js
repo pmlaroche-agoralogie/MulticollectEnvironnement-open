@@ -18,7 +18,7 @@
  */
 
 //debug global
-debug=0;
+debug=true;
 
 //test si chrome
 var isMobile = true;
@@ -98,8 +98,6 @@ onDeviceReady: function() {
                             {
                             		for(var i=0;i<dataset;i++)
                                     {
-                                		if (debug)
-                                			alert(res.rows.item(i).uidquestionnaire+" ligne "+res.rows.item(i).id+" en cours \ndeb :"+res.rows.item(i).tsdebut+" \nfin : "+res.rows.item(i).fin+"\ntimestamp "+timestamp);
                                 		$('body').removeClass('none');
                                 		//$('body.home .question').html("Vous avez un questionnaire à remplir");
                                 		$('body.home #home').html('<div class="question" qid="'+res.rows.item(i).uidquestionnaire+'">'+res.rows.item(i).titre+'</div>');                			
@@ -274,7 +272,7 @@ function pickRandomProperty(obj) {
 }
 
 function sendReponsesOld()
-{debug=0;
+{
 	var aReponses ={};
 	app.db.transaction(function(tx) {
 		tx.executeSql('SELECT * FROM "horaires" WHERE fait = 1;', [], function(tx, resHoraires) {
@@ -335,13 +333,23 @@ function sendReponsesOld()
 
 
 function saveQuestionnaire(firstTime) {
+	if (debug)
+		alert('saveQuest1');
 	app.db.transaction(function(tx) {
+		if (debug)
+			alert('saveQuest2');
 		var sid = surveys[0].sid;
 		var qtitre = surveys_languagesettings[0].surveyls_title;
 		tx.executeSql('select count("id") as cnt from "questionnaires" WHERE uidquestionnaire = '+sid+';', [], function(tx, res) {
+			if (debug)
+				alert('saveQuest3');
 			if (res.rows.item(0).cnt < 1)
 			{
+				if (debug)
+					alert('saveQuest4');
 				tx.executeSql('INSERT INTO "questionnaires" (uidquestionnaire,titre) VALUES("'+sid+'","'+qtitre+'");',[],function(tx, res) {
+					if (debug)
+						alert('saveQuest5');
 					if (isMobile)
 					{
 					navigator.notification.alert(
@@ -352,7 +360,7 @@ function saveQuestionnaire(firstTime) {
 				        );
 					}
 					else
-						{alert("Questionnaire enregistré");}
+						{alert("Questionnaire enregistré 3");alert(debug)}
 				}); 
 			}
 			});
@@ -437,7 +445,7 @@ function saveUser(){
 }
 
 function sendReponses()
-{debug=0;
+{
 	var aReponses ={};
 	app.db.transaction(function(tx) {
 		tx.executeSql('SELECT DISTINCT "idhoraire" FROM "reponses" WHERE envoi = 0 ;', [], function(tx, resHoraires) {

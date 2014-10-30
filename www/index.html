@@ -59,6 +59,8 @@
 		<script type="text/javascript"> 
 
 			var onLssLoaded = function(lss,firstTime) {
+				if (debug)
+					alert('onlss');
 			  firstTime = typeof firstTime !== 'undefined' ? firstTime : 0;
 			  questions = lss.getRowsOf("questions");
 			  answers = lss.getRowsOf("answers");
