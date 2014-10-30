@@ -169,8 +169,6 @@ onDeviceReady: function() {
                             {
                             		for(var i=0;i<dataset;i++)
                                     {
-                                		if (debug)
-                                			alert(res.rows.item(i).uidquestionnaire+" ligne "+res.rows.item(i).id+" en cours \ndeb :"+res.rows.item(i).tsdebut+" \nfin : "+res.rows.item(i).fin+"\ntimestamp "+timestamp);
                                 		$('body').removeClass('none');
                                 		//$('body.home .question').html("Vous avez un questionnaire à remplir");
                                 		$('body.home #home').html('<div class="question" qid="'+res.rows.item(i).uidquestionnaire+'">'+res.rows.item(i).titre+'</div>');                			
@@ -345,7 +343,7 @@ function saveQuestionnaire(firstTime) {
 			alert(sid);alert(qtitre);
 			alert('saveQuest22');
 			}
-		tx.executeSql('select count("id") as cnt from "questionnaires" WHERE uidquestionnaire = '+sid+';', [], function(tx, res) {
+		tx.executeSql('select count("id") as cnt from "questionnaires" WHERE uidquestionnaire = "'+sid+'";', [], function(tx, res) {
 			if (debug)
 				alert('saveQuest3');
 			if (res.rows.item(0).cnt < 1)
@@ -368,8 +366,8 @@ function saveQuestionnaire(firstTime) {
 						{alert("Questionnaire enregistré 3");alert(debug)}
 				}); 
 			}
-			});
-	});
+		});//fin selct
+	});//fin app
 }
 
 function saveUser(){
