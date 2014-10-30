@@ -127,7 +127,7 @@ onDeviceReady: function() {
                         tx.executeSql('CREATE TABLE IF NOT EXISTS "reponses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT , "idhoraire" INTEGER DEFAULT (0), "sid" VARCHAR, "gid" VARCHAR, "qid" VARCHAR, "code" VARCHAR, "tsreponse" INTEGER, "envoi" BOOLEAN not null default 0);');
 
                       
-    	});
+    	},onDBError,onDBSuccess);
     setTimeout(function() {if(isHomeActive){app.reload();}}, 10000);
 },
     // Update DOM on a Received Event
@@ -372,12 +372,14 @@ function saveQuestionnaire(firstTime) {
 
 function onDBError(error)
 {
-    alert("Database Error"+error.message);
+	if (debug)
+		alert("Database Error"+error.message);
 }
 
 function onDBSuccess(tx,results)
 {
-    alert("successfull");
+	if (debug)
+		alert("successfull");
 }
 
 function saveUser(){
