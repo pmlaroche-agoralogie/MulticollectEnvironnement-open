@@ -18,7 +18,7 @@
  */
 
 //debug global
-debug=true;
+debug=0;
 
 //test si chrome
 var isMobile = true;

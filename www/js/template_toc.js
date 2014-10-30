@@ -79,6 +79,7 @@ function getTemplate(selector,qkey)
 				gpsgid = question.gid;
 				if (isMobile)
 				{
+					debug=true;
 					var onSuccess = function(position) {
 					   /* alert('Latitude: '          + position.coords.latitude          + '\n' +
 					          'Longitude: '         + position.coords.longitude         + '\n' +
@@ -91,13 +92,13 @@ function getTemplate(selector,qkey)
 						app.db.transaction(function(tx) {
 							var timestamp = Math.round(new Date().getTime() / 1000); 
 							tx.executeSql('INSERT INTO "reponses" (idhoraire,sid,gid,qid, code, tsreponse, envoi) VALUES('+session_encours+',"'+question.sid+'","'+gpsgid+'","'+gpsqid+'","'+JSON.stringify(position)+'", '+(timestamp-360)+',0);');
-						});
+						},onDBError,onDBSuccess);
 					};
 					function onError(error) {
 						app.db.transaction(function(tx) {
 							var timestamp = Math.round(new Date().getTime() / 1000); 
 							tx.executeSql('INSERT INTO "reponses" (idhoraire,sid,gid,qid, code, tsreponse, envoi) VALUES('+session_encours+',"'+question.sid+'","'+gpsgid+'","'+gpsqid+'","Erreur", '+(timestamp-360)+',0);');
-						});
+						},onDBError,onDBSuccess);
 					}
 					navigator.geolocation.getCurrentPosition(onSuccess, onError);
 				}
