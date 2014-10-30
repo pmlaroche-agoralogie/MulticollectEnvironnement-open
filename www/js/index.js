@@ -367,7 +367,17 @@ function saveQuestionnaire(firstTime) {
 				}); 
 			}
 		});//fin selct
-	});//fin app
+	},onDBError,onDBSuccess);//fin app
+}
+
+function onDBError(error)
+{
+    alert("Database Error"+error.message);
+}
+
+function onDBSuccess(tx,results)
+{
+    alert("successfull");
 }
 
 function saveUser(){
