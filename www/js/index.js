@@ -522,3 +522,6 @@ function sendReponses()
 	});
 }
 
+function alertDismissed() {
+    // do something
+}
