@@ -120,7 +120,7 @@ onDeviceReady: function() {
                             	$('body').addClass('none');
                             	$('body.home #home').html(' <div class="question">Vous n\'avez pas de questionnaire à remplir</div>');
                             	if (debug)
-                            		alert("aucun questionnaire en cours\ntimestamp "+timestamp);
+                            		alert("aucun questionnaire en cours\n");
                             }
                         }); 
                         //creation table réponses
