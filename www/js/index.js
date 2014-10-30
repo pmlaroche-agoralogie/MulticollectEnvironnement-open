@@ -84,9 +84,9 @@ onDeviceReady: function() {
 
     // https://github.com/brodysoft/Cordova-SQLitePlugin
     if(isMobile)
-    	app.db = window.sqlitePlugin.openDatabase("Database", "1.0", "Demo", -1);
+    	app.db = window.sqlitePlugin.openDatabase("MCENVDatabase", "1.0", "MCENVDemo", -1);
     else
-    	app.db = openDatabase("Database", "1.0", "Demo", -1);
+    	app.db = openDatabase("MCENVDatabase", "1.0", "MCENVDemo", -1);
     
     app.db.transaction(function(tx) {                       
                         //table questionnaire
