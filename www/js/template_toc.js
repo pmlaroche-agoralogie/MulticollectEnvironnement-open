@@ -79,7 +79,7 @@ function getTemplate(selector,qkey)
 				gpsgid = question.gid;
 				if (isMobile)
 				{
-					debug=true;
+					
 					if(debug)alert("gps");
 					var onSuccess = function(position) {
 						if(debug)alert("gpsok");
