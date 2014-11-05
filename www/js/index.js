@@ -200,9 +200,36 @@ onDeviceReady: function() {
 			sendReponses();
 			setTimeout(function() {if(isHomeActive){app.reload();}}, 10000);
     	});   	
+    },
+    
+    takephoto:function(){
+    	 navigator.camera.getPicture(onPhotoDataSuccess, onPhotoFail, { quality: 50,
+    	        destinationType: destinationType.DATA_URL });
     }
     
 };
+
+function onPhotoDataSuccess(imageData) {
+    // Uncomment to view the base64-encoded image data
+    // console.log(imageData);
+
+    // Get image handle
+    //
+    var smallImage = document.getElementById('smallImage');
+
+    // Unhide image elements
+    //
+    smallImage.style.display = 'block';
+
+    // Show the captured photo
+    // The inline CSS rules are used to resize the image
+    //
+    smallImage.src = "data:image/jpeg;base64," + imageData;
+  }
+
+function onPhotoFail(message) {
+    alert('Failed because: ' + message);
+  }
 
 function getSurveyConfig()
 {

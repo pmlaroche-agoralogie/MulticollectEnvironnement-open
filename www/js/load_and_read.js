@@ -149,17 +149,47 @@ function downloadNewStudy (form,callback) {
                             openStudy(form, callback,1);
                         },
                         function downloadFailed(error) {
-                            alert("Impossible de télécharger : "+studyNumber);
+                        	if (isMobile)
+                			{
+                			navigator.notification.alert(
+                					"Impossible de télécharger : "+studyNumber,  // message
+                		            alertDismissed,         // callback
+                		            'Multicollect',            // title
+                		            'Ok'                  // buttonName
+                		        );
+                			}
+                			else
+                				{alert("Impossible de télécharger : "+studyNumber);}
                         }
                     );
                 },
                 function getFileFailed(evt) {
-                    alert("Impossible de récupérer le chemin.");
+                	if (isMobile)
+        			{
+        			navigator.notification.alert(
+        					"Impossible de récupérer le chemin.",  // message
+        		            alertDismissed,         // callback
+        		            'Multicollect',            // title
+        		            'Ok'                  // buttonName
+        		        );
+        			}
+        			else
+        				{alert("Impossible de récupérer le chemin.");}
                 }
             );
         },
         function fileRequestFailed(evt) {
-            alert("Impossible de récupérer le système de fichiers.");
+        	if (isMobile)
+			{
+			navigator.notification.alert(
+					"Impossible de récupérer le système de fichiers.",  // message
+		            alertDismissed,         // callback
+		            'Multicollect',            // title
+		            'Ok'                  // buttonName
+		        );
+			}
+			else
+				{alert("Impossible de récupérer le système de fichiers.");}
         }
     );
 }
@@ -204,24 +234,64 @@ function openStudy (form, callback,firstTime) {
                             };
                             
                             fileReader.onerror = function(evt) {
-                                alert("Error"+evt.error.code);
+                            	if (isMobile)
+                    			{
+                    			navigator.notification.alert(
+                    					"Error"+evt.error.code,  // message
+                    		            alertDismissed,         // callback
+                    		            'Multicollect',            // title
+                    		            'Ok'                  // buttonName
+                    		        );
+                    			}
+                    			else
+                    				{alert("Error"+evt.error.code);}
                             };
                             
                             fileReader.readAsText(file);
                         },
                         function(error){
-                            alert("Impossible d'ouvrir le suivi demandé. ("+studyNumber+")");
+                        	if (isMobile)
+                			{
+                			navigator.notification.alert(
+                					"Impossible d'ouvrir le suivi demandé. ("+studyNumber+")",  // message
+                		            alertDismissed,         // callback
+                		            'Multicollect',            // title
+                		            'Ok'                  // buttonName
+                		        );
+                			}
+                			else
+                				{alert("Impossible d'ouvrir le suivi demandé. ("+studyNumber+")");}
                         }
                     );
                     
                 },
                 function getFileFailed(evt) {
-                    alert("Impossible d'ouvrir le suivi demandé ="+studyNumber+" ");
+                	if (isMobile)
+        			{
+        			navigator.notification.alert(
+        					"Impossible d'ouvrir le suivi demandé ="+studyNumber+" ",  // message
+        		            alertDismissed,         // callback
+        		            'Multicollect',            // title
+        		            'Ok'                  // buttonName
+        		        );
+        			}
+        			else
+        				{alert("Impossible d'ouvrir le suivi demandé ="+studyNumber+" ");}
                 }
             );
         },
         function fileRequestFailed(evt) {
-            alert("Impossible de récupérer le système de fichiers.");
+        	if (isMobile)
+			{
+			navigator.notification.alert(
+					"Impossible de récupérer le système de fichiers.",  // message
+		            alertDismissed,         // callback
+		            'Multicollect',            // title
+		            'Ok'                  // buttonName
+		        );
+			}
+			else
+				{alert("Impossible de récupérer le système de fichiers.");}
         }
     );
 }

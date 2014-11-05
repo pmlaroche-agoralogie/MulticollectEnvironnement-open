@@ -47,11 +47,13 @@ function getTemplate(selector,qkey)
 			
 			template = form_slider.replace('##bulles##',bulles)
 				.replace('##question##',question.question)
+				.replace('##next##',"'"+selector+"'," +(qkey + 1))
 				.replace('##next##',"'"+selector+"'," +(qkey + 1));
 			
 			if (configSlide.tpl=="sl4")
 			//heure,demi-heure
 			template = form_slider2.replace('##question##',question.question)
+			.replace('##next##',"'"+selector+"'," +(qkey + 1))
 			.replace('##next##',"'"+selector+"'," +(qkey + 1));;
 		break; 
 		case "S": 
@@ -199,7 +201,17 @@ function saveFormData(type)
 			form_reponse = $("#slidervalue").attr("value");
 		break; 
 		default: 
-			alert("pas de type");
+			if (isMobile)
+			{
+			navigator.notification.alert(
+		            'pas de type',  // message
+		            alertDismissed,         // callback
+		            'Multicollect',            // title
+		            'Ok'                  // buttonName
+		        );
+			}
+			else
+				{alert("pas de type");}
 		 	myreturn = false;
 		break; 
 	}
@@ -323,7 +335,7 @@ var form_slider_script = '<script>$( "#slider-range" ).slider({' +
 
 var form_slider =  
 '<div class="spirale"><div class="fille"></div><div class="postit"><div class="question">##question##</div></div></div>' +  
-'<form method="post" action="" id="multi_form" name="multi_form" onSubmit="if(valide_slider()&&saveFormData(\'slider\')){getTemplate(##next##);}return false;">' +   
+'<form method="post" action="" id="multi_form" name="multi_form" onSubmit="if(valide_slider()&&saveFormData(\'slider\')){getTemplate(##next##);}return false;" next="##next##">' +   
 //'<form method="post" action="" id="multi_form" name="multi_form" onSubmit="return getTemplate(##next##)">' +   
 '  ##bulles##' +   
 '  <div class="clear"></div>' +   
@@ -391,7 +403,7 @@ var form_slider2_script = '<script>$( "#slider-range" ).slider({' +
 
 var form_slider2 =  
 '<div class="spirale"><div class="fille"></div><div class="postit"><div class="question">##question##</div></div></div>' + 
-'<form class="time" id="multi_form" name="multi_form" action="" onSubmit="if(valide_slider2()&&saveFormData(\'slider\')){getTemplate(##next##);}return false;">'  +
+'<form class="time" id="multi_form" name="multi_form" action="" onSubmit="if(valide_slider2()&&saveFormData(\'slider\')){getTemplate(##next##);}return false;" next="##next##">'  +
 '  <div class="clear"></div>'  +
 '  <input type="hidden" id="slidervalue" name="slidervalue"/> '  +
 '  <div id="slider-range" class="heure"></div>'  +
