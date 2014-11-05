@@ -45,8 +45,9 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
 onDeviceReady: function() {
 	//photo
+	if(isMobile){
 	pictureSource=navigator.camera.PictureSourceType;
-    destinationType=navigator.camera.DestinationType;
+    destinationType=navigator.camera.DestinationType;}
     //fin photo
     app.receivedEvent('deviceready');
     hide_div('blocinit');
@@ -209,6 +210,12 @@ onDeviceReady: function() {
     takephoto:function(){
     	 navigator.camera.getPicture(onPhotoDataSuccess, onPhotoFail, { quality: 50,
     	        destinationType: destinationType.DATA_URL });
+    },
+    
+    choosephoto:function(){
+    	navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50,
+            destinationType: destinationType.FILE_URI,
+            sourceType: pictureSource.PHOTOLIBRARY });
     }
     
 };
@@ -229,6 +236,24 @@ function onPhotoDataSuccess(imageData) {
     // The inline CSS rules are used to resize the image
     //
     smallImage.src = "data:image/jpeg;base64," + imageData;
+  }
+
+function onPhotoURISuccess(imageURI) {
+    // Uncomment to view the image file URI
+    // console.log(imageURI);
+
+    // Get image handle
+    //
+    var largeImage = document.getElementById('largeImage');
+
+    // Unhide image elements
+    //
+    largeImage.style.display = 'block';
+
+    // Show the captured photo
+    // The inline CSS rules are used to resize the image
+    //
+    largeImage.src = imageURI;
   }
 
 function onPhotoFail(message) {
