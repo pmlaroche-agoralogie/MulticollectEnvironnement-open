@@ -213,7 +213,7 @@ onDeviceReady: function() {
     },
     
     choosephoto:function(){
-    	navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50,
+    	navigator.camera.getPicture(onPhotoURISuccess, onPhotoFail, { quality: 50,
             destinationType: destinationType.FILE_URI,
             sourceType: pictureSource.PHOTOLIBRARY });
     }
