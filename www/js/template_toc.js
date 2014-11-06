@@ -57,6 +57,7 @@ function getTemplate(selector,qkey)
 			.replace('##next##',"'"+selector+"'," +(qkey + 1));;
 		break; 
 		case "S": 
+		case "T": 
 			//template = "string";
 			configString = getQuestionConfig(question);
 			if (configString.tpl=="uid")
