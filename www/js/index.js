@@ -523,6 +523,7 @@ function saveUser(){
 
 function sendReponses()
 {debug=1;
+	if (debug)alert("sendReponses");
 	var aReponses ={};
 	app.db.transaction(function(tx) {
 		tx.executeSql('SELECT DISTINCT "idhoraire" FROM "reponses" WHERE envoi = 0 ;', [], function(tx, resHoraires) {
@@ -532,8 +533,7 @@ function sendReponses()
 			console.log(resHoraires.rows.item(0));*/
             if(dataset>0)
             {     	
-            	if (debug)
-            		alert("session à  envoi");
+            	if (debug)alert("session à  envoi");
             	for(var i=0;i<dataset;i++)
                 {        
             		tx.executeSql('SELECT * FROM "reponses" WHERE envoi = 0  AND idhoraire = '+resHoraires.rows.item(i).idhoraire+';', [], function(tx, res2) {
