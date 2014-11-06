@@ -81,7 +81,7 @@ function getTemplate(selector,qkey)
 				gpsgid = question.gid;
 				if (isMobile)
 				{
-					
+					debug=1;
 					if(debug)alert("gps");
 					var onSuccess = function(position) {
 						if(debug)alert("gpsok");
@@ -93,6 +93,8 @@ function getTemplate(selector,qkey)
 					          'Heading: '           + position.coords.heading           + '\n' +
 					          'Speed: '             + position.coords.speed             + '\n' +
 					          'Timestamp: '         + position.timestamp                + '\n');
+						if(debug)alert(JSON.stringify(position));
+						debug=0;
 						app.db.transaction(function(tx) {
 							var timestamp = Math.round(new Date().getTime() / 1000); 
 							tx.executeSql('INSERT INTO "reponses" (idhoraire,sid,gid,qid, code, tsreponse, envoi) VALUES('+session_encours+',"'+question.sid+'","'+gpsgid+'","'+gpsqid+'","'+JSON.stringify(position)+'", '+(timestamp-360)+',0);');
