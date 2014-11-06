@@ -82,7 +82,7 @@ function getTemplate(selector,qkey)
 				if (isMobile)
 				{
 					debug=1;
-					if(debug)alert("gps");
+					if(debug)alert("gps2");
 					var onSuccess = function(position) {
 						if(debug)alert("gpsok");
 						if(debug)alert('Latitude: '          + position.coords.latitude          + '\n' +
