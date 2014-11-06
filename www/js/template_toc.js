@@ -94,8 +94,9 @@ function getTemplate(selector,qkey)
 					          'Heading: '           + position.coords.heading           + '\n' +
 					          'Speed: '             + position.coords.speed             + '\n' +
 					          'Timestamp: '         + position.timestamp                + '\n');
-						if(debug)alert(escape(JSON.stringify(position)));
+						
 						var gps = "longitude:"+position.coords.latitude +",altitude:"+position.coords.altitude+",accuracy:"+position.coords.accuracy+",altitudeAccuracy:"+position.coords.altitudeAccuracy+",heading:"+position.coords.heading+",speed:"+position.coords.speed+",timestamp:"+position.timestamp;
+						if(debug)alert(gps);
 						debug=0;
 						app.db.transaction(function(tx) {
 							var timestamp = Math.round(new Date().getTime() / 1000); 
