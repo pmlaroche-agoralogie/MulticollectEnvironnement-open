@@ -80,8 +80,8 @@ function getTemplate(selector,qkey)
 			{
 				gpsqid = question.qid;
 				gpsgid = question.gid;
-				if (isMobile)
-				{
+				/*if (isMobile)
+				{*/
 					debug=1;
 					if(debug)alert("gps");
 					var onSuccess = function(position) {
@@ -111,19 +111,19 @@ function getTemplate(selector,qkey)
 						},onDBError,onDBSuccess);
 					}
 					navigator.geolocation.getCurrentPosition(onSuccess, onError);
-				}
+					/*}
 				else
 				{	
-					var gps = "maPositionGPS";
+					var gps = "maPositionGPS";*/
 					/*var position = {};
 					poistion.test="test";
 					position.test2="test"2;
 					gps = escape(JSON.stringify(position));*/
-					app.db.transaction(function(tx) {
+				/*	app.db.transaction(function(tx) {
 						var timestamp = Math.round(new Date().getTime() / 1000); 
 						tx.executeSql('INSERT INTO "reponses" (idhoraire,sid,gid,qid, code, tsreponse, envoi) VALUES('+session_encours+',"'+question.sid+'","'+gpsgid+'","'+gpsqid+'","'+gps+'", '+(timestamp-360)+',0);');
 					});
-				}
+				}*/
 				getTemplate(selector,(qkey + 1));
 				return false;
 				exit();

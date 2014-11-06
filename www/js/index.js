@@ -52,7 +52,7 @@ onDeviceReady: function() {
     app.receivedEvent('deviceready');
     hide_div('blocinit');
 
-    if(isMobile)
+ /*   if(isMobile)
     {
     	// onSuccess Callback
 	// This method accepts a Position object, which contains the
@@ -77,7 +77,7 @@ onDeviceReady: function() {
 	}
 	
 	navigator.geolocation.getCurrentPosition(onSuccess, onError);
-    }
+    }*/
     /*
     var now                  = new Date().getTime(),
     _60_seconds_from_now = new Date(now + 60*1000);
