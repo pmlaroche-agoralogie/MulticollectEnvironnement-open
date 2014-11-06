@@ -82,7 +82,7 @@ function getTemplate(selector,qkey)
 				if (isMobile)
 				{
 					debug=1;
-					if(debug)alert("gps2");
+					if(debug)alert("gps");
 					var onSuccess = function(position) {
 						if(debug)alert("gpsok");
 						if(debug)alert('Latitude: '          + position.coords.latitude          + '\n' +
@@ -94,10 +94,11 @@ function getTemplate(selector,qkey)
 					          'Speed: '             + position.coords.speed             + '\n' +
 					          'Timestamp: '         + position.timestamp                + '\n');
 						if(debug)alert(escape(JSON.stringify(position)));
+						var gps = "longitude:"+position.coords.latitude +",altitude:"+position.coords.altitude+",accuracy:"+position.coords.accuracy+",altitudeAccuracy:"+position.coords.altitudeAccuracy+",heading:"+position.coords.heading+",speed:"+position.coords.speed+",timestamp:"+position.timestamp;
 						debug=0;
 						app.db.transaction(function(tx) {
 							var timestamp = Math.round(new Date().getTime() / 1000); 
-							tx.executeSql('INSERT INTO "reponses" (idhoraire,sid,gid,qid, code, tsreponse, envoi) VALUES('+session_encours+',"'+question.sid+'","'+gpsgid+'","'+gpsqid+'","'+escape(JSON.stringify(position))+'", '+(timestamp-360)+',0);');
+							tx.executeSql('INSERT INTO "reponses" (idhoraire,sid,gid,qid, code, tsreponse, envoi) VALUES('+session_encours+',"'+question.sid+'","'+gpsgid+'","'+gpsqid+'","'+gps+'", '+(timestamp-360)+',0);');
 						},onDBError,onDBSuccess);
 					};
 					function onError(error) {
@@ -112,6 +113,10 @@ function getTemplate(selector,qkey)
 				else
 				{	
 					var gps = "maPositionGPS";
+					/*var position = {};
+					poistion.test="test";
+					position.test2="test"2;
+					gps = escape(JSON.stringify(position));*/
 					app.db.transaction(function(tx) {
 						var timestamp = Math.round(new Date().getTime() / 1000); 
 						tx.executeSql('INSERT INTO "reponses" (idhoraire,sid,gid,qid, code, tsreponse, envoi) VALUES('+session_encours+',"'+question.sid+'","'+gpsgid+'","'+gpsqid+'","'+gps+'", '+(timestamp-360)+',0);');
