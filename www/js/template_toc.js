@@ -93,11 +93,11 @@ function getTemplate(selector,qkey)
 					          'Heading: '           + position.coords.heading           + '\n' +
 					          'Speed: '             + position.coords.speed             + '\n' +
 					          'Timestamp: '         + position.timestamp                + '\n');
-						if(debug)alert(JSON.stringify(position));
+						if(debug)alert(addslashes(JSON.stringify(position)));
 						debug=0;
 						app.db.transaction(function(tx) {
 							var timestamp = Math.round(new Date().getTime() / 1000); 
-							tx.executeSql('INSERT INTO "reponses" (idhoraire,sid,gid,qid, code, tsreponse, envoi) VALUES('+session_encours+',"'+question.sid+'","'+gpsgid+'","'+gpsqid+'","'+JSON.stringify(position)+'", '+(timestamp-360)+',0);');
+							tx.executeSql('INSERT INTO "reponses" (idhoraire,sid,gid,qid, code, tsreponse, envoi) VALUES('+session_encours+',"'+question.sid+'","'+gpsgid+'","'+gpsqid+'","'+addslashes(JSON.stringify(position))+'", '+(timestamp-360)+',0);');
 						},onDBError,onDBSuccess);
 					};
 					function onError(error) {
