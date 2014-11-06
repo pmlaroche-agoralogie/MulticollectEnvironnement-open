@@ -522,7 +522,7 @@ function saveUser(){
 }
 
 function sendReponses()
-{
+{debug=1;
 	var aReponses ={};
 	app.db.transaction(function(tx) {
 		tx.executeSql('SELECT DISTINCT "idhoraire" FROM "reponses" WHERE envoi = 0 ;', [], function(tx, resHoraires) {
@@ -581,7 +581,7 @@ function sendReponses()
                 }
             }
 		});
-	});
+	});debug=0;
 }
 
 function alertDismissed() {
