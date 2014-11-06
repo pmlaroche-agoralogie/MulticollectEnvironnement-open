@@ -135,7 +135,7 @@ onDeviceReady: function() {
                             }
                         }); 
                         //creation table réponses
-                        tx.executeSql('CREATE TABLE IF NOT EXISTS "reponses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT , "idhoraire" INTEGER DEFAULT (0), "sid" VARCHAR, "gid" VARCHAR, "qid" VARCHAR, "code" VARCHAR, "tsreponse" INTEGER, "envoi" BOOLEAN not null default 0);');
+                        tx.executeSql('CREATE TABLE IF NOT EXISTS "reponses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT , "idhoraire" INTEGER DEFAULT (0), "sid" VARCHAR, "gid" VARCHAR, "qid" VARCHAR, "code" TEXT, "tsreponse" INTEGER, "envoi" BOOLEAN not null default 0);');
 
                       
     	},onDBError,onDBSuccess);
