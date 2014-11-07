@@ -435,13 +435,13 @@ function saveQuestionnaire(firstTime) {
 
 function onDBError(error)
 {
-	//if (debug)
+	if (debug)
 		alert("Database Error"+error.message);
 }
 
 function onDBSuccess(tx,results)
 {
-	//if (debug)
+	if (debug)
 		alert("successfull");
 }
 

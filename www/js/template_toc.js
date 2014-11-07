@@ -436,7 +436,7 @@ var merci =
 '<div class="bulle_seule">Vous avez terminé !</div>'  +
 '<div class="fille"></div>'  +
 '</div>' +
-'<form action="" onSubmit="app.reload();">'  +
+'<form action="" onSubmit="app.reload();return false;">'  +
 '  <div class="suite retour_accueil">'  +
 '    <input type="submit" value="Retour Accueil">'  +
 '  </div>'  +
