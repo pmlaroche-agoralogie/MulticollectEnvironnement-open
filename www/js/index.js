@@ -19,6 +19,7 @@
 
 //debug global
 debug=0;
+gps="noGPS";
 
 //test si chrome
 var isMobile = true;
@@ -51,6 +52,8 @@ onDeviceReady: function() {
     //fin photo
     app.receivedEvent('deviceready');
     hide_div('blocinit');
+    getPositionGps();
+    
 
  /*   if(isMobile)
     {
@@ -115,6 +118,7 @@ onDeviceReady: function() {
                                 		
                                     }
                             		$('body.home .question').click(function(){
+                            			getPositionGps();
                             			isHomeActive = false;
                           			  //TODO switch ismobile pour test locaux seulement sinon fonctionnement normal
                             			$('body.home #opensurvey #idsurvey').attr('value',$(this).attr('qid'));
@@ -140,7 +144,8 @@ onDeviceReady: function() {
 
                       
     	},onDBError,onDBSuccess);
-    setTimeout(function() {if(isHomeActive){app.reload();}}, 10000);
+    sendReponses();
+    setTimeout(function() {if(isHomeActive){app.reload();}}, 60000);
 },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -210,7 +215,7 @@ onDeviceReady: function() {
 			
 			//Envoi réponses si existent
 			sendReponses();
-			setTimeout(function() {if(isHomeActive){app.reload();}}, 10000);
+			setTimeout(function() {if(isHomeActive){app.reload();}}, 60000);
     	},onDBError,onDBSuccess); 	
     },
     
@@ -587,4 +592,38 @@ function sendReponses()
 
 function alertDismissed() {
     // do something
+}
+
+function getPositionGps()
+{
+	if (isMobile)
+	{
+		//debug=1;
+		if(debug)alert("gps");
+		var onSuccess = function(position) {
+			if(debug)alert("gpsok");
+			if(debug)alert('Latitude: '          + position.coords.latitude          + '\n' +
+		          'Longitude: '         + position.coords.longitude         + '\n' +
+		          'Altitude: '          + position.coords.altitude          + '\n' +
+		          'Accuracy: '          + position.coords.accuracy          + '\n' +
+		          'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+		          'Heading: '           + position.coords.heading           + '\n' +
+		          'Speed: '             + position.coords.speed             + '\n' +
+		          'Timestamp: '         + position.timestamp                + '\n');
+			
+			gps = "latitude:"+position.coords.latitude +"longitude:"+position.coords.longitude +",altitude:"+position.coords.altitude+",accuracy:"+position.coords.accuracy+",altitudeAccuracy:"+position.coords.altitudeAccuracy+",heading:"+position.coords.heading+",speed:"+position.coords.speed+",timestamp:"+position.timestamp;
+			if(debug)alert(gps);
+		};
+		function onError(error) {
+			if(debug)alert("gpsko");
+		}
+		navigator.geolocation.getCurrentPosition(onSuccess, onError);
+	}
+	else
+	{	
+		gps = "maPositionGPS";
+		var timestamp = Math.round(new Date().getTime() / 1000); 
+		gps = "latitude:48.9999999,longitude:2.9999999,altitude:null,accuracy:21.9999999999999999999999,altitudeAccuracy:null,heading:null,speed:null,timestamp:"+(timestamp-360);
+
+	}
 }
